@@ -1,0 +1,91 @@
+<div class="p-5 mb-4 bg-light rounded-3">
+	<div class="container-fluid py-5">
+		<h1 class="display-5 fw-bold">Restaurant Records Management System</h1>
+	</div>
+</div>
+<table class="table mt-4">
+	<thead>
+		<tr>
+			<th scope="col">Restaurant Name</th>
+			<th scope="col">Restaurant Email</th>
+			<th scope="col">Restaurant Address</th>
+			<th scope="col">Restaurant Phone</th>
+			<th scope="col">Restaurant Services</th>
+			<th scope="col">Action</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let data of allRestaurantData">
+			<td>{{data.name}}</td>
+			<td>{{data.email}}</td>
+			<td>{{data.address}}</td>
+			<td>{{data.mobile}}</td>
+			<td>{{data.services}}</td>
+			<td>
+				<button (click)="editResto(data)" class="btn btn-danger">Edit</button>
+				<button (click)="deleteResto(data.id)" class="btn btn-danger" data-test-id="delete_restaurant">Delete</button>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<div *ngIf="updateRestaurant; else elseBlock">
+    <p class="col-md-8 fs-4">Update Record of Restaurant</p>
+    <form [formGroup]="formValue">
+        <div class="form-group">
+            <label for="name" style="display: flex;">Name</label>
+            <input type="text" id="name" class="form-control" formControlName="name" placeholder="Restaurant Name" />
+        </div>
+        <div class="form-group">
+            <label for="email" style="display: flex;">Email</label>
+            <input type="email" id="email" class="form-control" formControlName="email" placeholder="abcd@gmail.com" />
+        </div>
+        <div class="form-group">
+            <label for="address" style="display: flex;">Address</label>
+            <input type="text" id="address" class="form-control" formControlName="address" placeholder="Abc road, near abc, pin: 12546" />
+        </div>
+        <div class="form-group">
+            <label for="mobile" style="display: flex;">Mobile</label>
+            <input type="number" id="mobile" class="form-control" formControlName="mobile" placeholder="+91-1234567890" />
+        </div>
+        <div class="form-group">
+            <label for="services" style="display: flex;">Services</label>
+            <input type="text" id="services" class="form-control" formControlName="services" placeholder="chai, coffee" />
+        </div>
+        <div style="display: flex;">
+            <!-- <button class="btn btn-primary" type="submit">sign up</button> -->
+            <!-- <button type="button" class="btn btn-primary" (click)="saveRestaurant()" data-test-id="add_restaurant">Save Details</button><br> -->
+            <button type="button" class="btn btn-primary" (click)="updateResto()" data-test-id="update_restaurant">Update</button>
+        </div>
+    </form>
+</div>
+<ng-template #elseBlock>
+    <div class="mt-1">
+        <p class="col-md-8 fs-4"> Save Records of Restaurant</p>
+        <form [formGroup]="formValue">
+            <div class="form-group">
+                <label for="name" style="display: flex;">Name</label>
+                <input type="text" id="name" class="form-control" formControlName="name" placeholder="Restaurant Name" />
+            </div>
+            <div class="form-group">
+                <label for="email" style="display: flex;">Email</label>
+                <input type="email" id="email" class="form-control" formControlName="email" placeholder="abcd@gmail.com" />
+            </div>
+            <div class="form-group">
+                <label for="address" style="display: flex;">Address</label>
+                <input type="text" id="address" class="form-control" formControlName="address" placeholder="Abc road, near abc, pin: 12546" />
+            </div>
+            <div class="form-group">
+                <label for="mobile" style="display: flex;">Mobile</label>
+                <input type="number" id="mobile" class="form-control" formControlName="mobile" placeholder="+91-1234567890" />
+            </div>
+            <div class="form-group">
+                <label for="services" style="display: flex;">Services</label>
+                <input type="text" id="services" class="form-control" formControlName="services" placeholder="chai, coffee" />
+            </div>
+            <div style="display: flex;">
+                <!-- <button class="btn btn-primary" type="submit">sign up</button> -->
+                <button type="button" class="btn btn-primary" (click)="saveRestaurant()" data-test-id="add_restaurant">Save Details</button><br>
+            </div>
+        </form>
+    </div>
+</ng-template>
